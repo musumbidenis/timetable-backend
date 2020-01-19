@@ -58,12 +58,8 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $this->validate($request, [
-            'admission' => 'required',
-            'idNumber' => 'required',
-        ]);
-        $admission = $request->input('admission');
-        $idNumber = $request->input('idNumber');
+        $admission = $request->admission;
+        $idNumber = $request->idNumber;
 
         $auth = Student::where('admissionNo',  $admission)->where('idNo',  $idNumber)->get();
 
