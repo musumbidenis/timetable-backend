@@ -65,7 +65,7 @@ class AuthController extends Controller
         $admission = $request->input('admission');
         $idNumber = $request->input('idNumber');
 
-        $auth = Student::where('admissionNo', '=', $admission)->where('idNo', '=', $idNumber);
+        $auth = Student::where('admissionNo',  $admission)->where('idNo',  $idNumber)->get();
 
         if ($auth){
             return response()->json([
