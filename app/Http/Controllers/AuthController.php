@@ -70,6 +70,7 @@ class AuthController extends Controller
         if ($auth){
             return response()->json([
                 'success'=> true,
+                $auth,
                 ]);
         }else{
            return response()->json('error');
