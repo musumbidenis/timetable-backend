@@ -10,14 +10,16 @@ class SessionsController extends Controller
 
     public function mondaySessions(Request $request)
     {
-        $admission = $request->admission;
+        $courseCode = $request->course;
+        $yosId = $request->year;
 
-        $data = DB::table('students')
-          ->join('units', 'units.courseCode', '=', 'students.courseCode')
+        $data = DB::table('users')
+          ->join('units', 'units.courseCode', '=', 'users.courseCode')
           ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
           ->join('days', 'days.dayId', '=', 'sessions.dayId')
           ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('students.admissionNo', '=', $admission) 
+          ->where('users.courseCode', '=', $courseCode)
+          ->where('users.yosId', '=', $yosId)
           ->where('sessions.dayId', '=', '1')
           ->orderBy('sessions.dayId', 'asc')
           ->orderBy('sessions.sessionStart', 'asc')
@@ -29,22 +31,22 @@ class SessionsController extends Controller
                 $data
             );
         }else{
-            return response()->json('Error');
+            return response()->json('error');
         }
     }
 
     public function tuesdaySessions(Request $request)
     {
+        $courseCode = $request->course;
+        $yosId = $request->year;
 
-        $admission = $request->admission;
-
-
-        $data = DB::table('students')
-          ->join('units', 'units.courseCode', '=', 'students.courseCode')
+        $data = DB::table('users')
+          ->join('units', 'units.courseCode', '=', 'users.courseCode')
           ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
           ->join('days', 'days.dayId', '=', 'sessions.dayId')
           ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('students.admissionNo', '=', $admission) 
+          ->where('users.courseCode', '=', $courseCode)
+          ->where('users.yosId', '=', $yosId) 
           ->where('sessions.dayId', '=', '2')
           ->orderBy('sessions.dayId', 'asc')
           ->orderBy('sessions.sessionStart', 'asc')
@@ -56,22 +58,22 @@ class SessionsController extends Controller
                 $data
             );
         }else{
-            return response()->json('Error');
+            return response()->json('error');
         }
     }
 
     public function wednesdaySessions(Request $request)
     {
+        $courseCode = $request->course;
+        $yosId = $request->year;
 
-        $admission = $request->admission;
-
-
-        $data = DB::table('students')
-          ->join('units', 'units.courseCode', '=', 'students.courseCode')
+        $data = DB::table('users')
+          ->join('units', 'units.courseCode', '=', 'users.courseCode')
           ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
           ->join('days', 'days.dayId', '=', 'sessions.dayId')
           ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('students.admissionNo', '=', $admission) 
+          ->where('users.courseCode', '=', $courseCode)
+          ->where('users.yosId', '=', $yosId)
           ->where('sessions.dayId', '=', '3')
           ->orderBy('sessions.dayId', 'asc')
           ->orderBy('sessions.sessionStart', 'asc')
@@ -83,22 +85,22 @@ class SessionsController extends Controller
                 $data
             );
         }else{
-            return response()->json('Error');
+            return response()->json('error');
         }
     }
 
     public function thursdaySessions(Request $request)
     {
+        $courseCode = $request->course;
+        $yosId = $request->year;
 
-        $admission = $request->admission;
-
-
-        $data = DB::table('students')
-          ->join('units', 'units.courseCode', '=', 'students.courseCode')
+        $data = DB::table('users')
+          ->join('units', 'units.courseCode', '=', 'users.courseCode')
           ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
           ->join('days', 'days.dayId', '=', 'sessions.dayId')
           ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('students.admissionNo', '=', $admission) 
+          ->where('users.courseCode', '=', $courseCode)
+          ->where('users.yosId', '=', $yosId) 
           ->where('sessions.dayId', '=', '4')
           ->orderBy('sessions.dayId', 'asc')
           ->orderBy('sessions.sessionStart', 'asc')
@@ -110,22 +112,23 @@ class SessionsController extends Controller
                 $data
             );
         }else{
-            return response()->json('Error');
+            return response()->json('error');
         }
     }
 
     public function fridaySessions(Request $request)
     {
+        $courseCode = $request->course;
+        $yosId = $request->year;
 
-        $admission = $request->admission;
 
-
-        $data = DB::table('students')
-          ->join('units', 'units.courseCode', '=', 'students.courseCode')
+        $data = DB::table('users')
+          ->join('units', 'units.courseCode', '=', 'users.courseCode')
           ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
           ->join('days', 'days.dayId', '=', 'sessions.dayId')
           ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('students.admissionNo', '=', $admission) 
+          ->where('users.courseCode', '=', $courseCode)
+          ->where('users.yosId', '=', $yosId) 
           ->where('sessions.dayId', '=', '5')
           ->orderBy('sessions.dayId', 'asc')
           ->orderBy('sessions.sessionStart', 'asc')
@@ -137,7 +140,7 @@ class SessionsController extends Controller
                 $data
             );
         }else{
-            return response()->json('Error');
+            return response()->json('error');
         }
     }
 }

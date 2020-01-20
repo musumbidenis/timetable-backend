@@ -31,7 +31,7 @@ Route::post('/course/upload', 'CoursesController@store');
 Route::post('/unit/upload', 'UnitsController@store');
 Route::post('/session/upload', 'SessionsController@store');
 
-
+Route::get('/mondaySessions', 'SessionsController@mondaySessions');
 
 
 

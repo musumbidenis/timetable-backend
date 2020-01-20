@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Student;
+use App\User;
+use Auth;
 use DB;
 use Alert;
 use Session;
@@ -57,28 +58,22 @@ class AuthController extends Controller
     /*POST
      */
     public function login(Request $request)
-    {
-        $admission = $request->admission;
-        $idNumber = $request->idNumber;
-
-        $auth = Student::where('admissionNo',  $admission)->where('idNo',  $idNumber)->get();
-
-        if ($auth){
-            return response()->json([
-                'success'=> true,
-                $auth,
-                ]);
-        }else{
-           return response()->json('error');
+    {      
+        if (Auth::attempt([
+            'admissionNo' => $request->admission,
+            'password' => $request->idNumber,
+            ])
+        ){
+           // Authentication passed...
+           return response()->json('success');
         }
+           return response()->json('error');
     }
 
     /*GET
      */
     public function logout()
     {
-        Auth::logout();
-        Session::flush();
-        return redirect('/admin');
-}
+
+    }
 }
