@@ -7,6 +7,31 @@ use Illuminate\Http\Request;
 use DB;
 class SessionsController extends Controller
 {
+     /*POST
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'day' => 'required',
+            'start' => 'required',
+            'stop' => 'required',
+            'course' => 'required',
+            'unit' => 'required',
+            'year' => 'required',
+         ]);
+        
+        $session = new Session();
+        $session->sessionStart = $request->input('start');
+        $session->sessionStop = $request->input('stop');
+        $session->dayId = $request->input('day');
+        $session->unitCode = $request->input('unit');
+        $session->courseCode = $request->input('course');
+        $session->yosId = $request->input('year');
+
+        $session->save();
+
+        return redirect('/session')->withSuccess('Uploaded successfully!');
+    }
 
     public function mondaySessions(Request $request)
     {
