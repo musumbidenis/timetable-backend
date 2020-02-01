@@ -21,6 +21,7 @@ Route::get('/getYears', 'YearsController@getYears');
 
 //Sessions for different days of the week
 Route::post('/mondaySessions', 'SessionsController@mondaySessions');
+Route::get('/mondaySessions', 'SessionsController@mondaySessions');
 Route::post('/tuesdaySessions', 'SessionsController@tuesdaySessions');
 Route::post('/wednesdaySessions', 'SessionsController@wednesdaySessions');
 Route::post('/thursdaySessions', 'SessionsController@thursdaySessions');
