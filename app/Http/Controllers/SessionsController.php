@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Session;
 use Illuminate\Http\Request;
+use Alert;
 use DB;
 class SessionsController extends Controller
 {
-     /*POST
+    /*POST
      */
     public function store(Request $request)
     {
@@ -32,7 +33,6 @@ class SessionsController extends Controller
 
         return redirect('/session')->withSuccess('Uploaded successfully!');
     }
-
     public function mondaySessions(Request $request)
     {
         $courseCode = $request->course;
@@ -43,8 +43,8 @@ class SessionsController extends Controller
           ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
           ->join('days', 'days.dayId', '=', 'sessions.dayId')
           ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('users.courseCode', '=', 'CIT')
-          ->where('users.yosId', '=', '3')
+          ->where('users.courseCode', '=', $courseCode)
+          ->where('users.yosId', '=', $yosId)
           ->where('sessions.dayId', '=', '1')
           ->orderBy('sessions.dayId', 'asc')
           ->orderBy('sessions.sessionStart', 'asc')
