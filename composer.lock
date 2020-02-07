@@ -1432,20 +1432,20 @@
         },
         {
             "name": "realrashid/sweet-alert",
-            "version": "v3.1.0",
+            "version": "v3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/realrashid/sweet-alert.git",
-                "reference": "1c0d31adcb64a1a4cc76fc97a731025c2a750b6f"
+                "reference": "05b6726005cfb46dcdea2f1b21d58b9d403c7956"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/1c0d31adcb64a1a4cc76fc97a731025c2a750b6f",
-                "reference": "1c0d31adcb64a1a4cc76fc97a731025c2a750b6f",
+                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/05b6726005cfb46dcdea2f1b21d58b9d403c7956",
+                "reference": "05b6726005cfb46dcdea2f1b21d58b9d403c7956",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "~5.4.0|~5.8.0|~5.9.0|^6.0",
+                "laravel/framework": "^5.4|^6.0|^7.0",
                 "php": "^7.2"
             },
             "require-dev": {
@@ -1494,7 +1494,7 @@
                 "sweet-alert2",
                 "toast"
             ],
-            "time": "2019-12-29T17:38:06+00:00"
+            "time": "2020-01-24T18:38:56+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

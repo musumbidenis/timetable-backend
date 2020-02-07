@@ -2,7 +2,6 @@
 
 <body class="">
 
-  @include('sweetalert::alert')
   @include('layouts.sidebar')
   @yield('content')
   @include('layouts.scripts')

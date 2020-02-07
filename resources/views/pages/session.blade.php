@@ -41,6 +41,11 @@
               </div>
               <h4 class="card-title">Session</h4>
             </div>
+            <!-- Display notification messages here -->
+            <div class="container" style="padding-top:10px;">
+              @include('layouts.flash-message')
+            </div>
+            
             <div class="card-body ">
               <form method="post" action="{{url('/session/upload')}}" enctype="multipart/form-data">
               {{ csrf_field() }}

@@ -42,6 +42,11 @@
               </div>
               <h4 class="card-title">Register Course</h4>
             </div>
+            <!-- Display notification messages here -->
+            <div class="container" style="padding-top:10px;">
+              @include('layouts.flash-message')
+            </div>
+            
             <div class="card-body ">
               <form method="post" action="{{url('/course/upload')}}" enctype="multipart/form-data">
               {{ csrf_field() }}
@@ -106,6 +111,11 @@
               </div>
               <h4 class="card-title">Register Unit</h4>
             </div>
+            <!-- Display notification messages here -->
+            <div class="container" style="padding-top:10px;">
+              @include('layouts.flash-message')
+            </div>
+
             <div class="card-body ">
               <form method="post" action="{{url('/unit/upload')}}" enctype="multipart/form-data">
               {{ csrf_field() }}

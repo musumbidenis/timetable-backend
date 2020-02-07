@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Unit;
 use Illuminate\Http\Request;
-use Alert;
 
 class UnitsController extends Controller
 {
@@ -39,7 +38,7 @@ class UnitsController extends Controller
         
         $unit->save();
 
-        return redirect('/course')->withSuccess('Uploaded successfully!');
+        return redirect('/course')->with('success2','Unit added successfully!');;
     }
 
     /**

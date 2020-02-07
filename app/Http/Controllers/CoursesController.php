@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use Illuminate\Http\Request;
-use Alert;
 
 class CoursesController extends Controller
 {
@@ -51,7 +50,7 @@ class CoursesController extends Controller
 
         $course->save();
 
-        return redirect('/course')->withSuccess('Uploaded successfully!');
+        return redirect('/course')->with('success1','Course added successfully!');
     }
 
     /**

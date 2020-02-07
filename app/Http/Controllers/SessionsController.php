@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Session;
 use Illuminate\Http\Request;
-use Alert;
 use DB;
 class SessionsController extends Controller
 {
@@ -31,7 +30,7 @@ class SessionsController extends Controller
 
         $session->save();
 
-        return redirect('/session');
+        return redirect('/session')->with('success1','Session added successfully!');;
     }
     public function mondaySessions(Request $request)
     {
