@@ -2,12 +2,11 @@
 @include('layouts.header')
 
 <body class="off-canvas-sidebar">
-  @include('sweetalert::alert')
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
     <div class="container">
       <div class="navbar-wrapper">
-        <a class="navbar-brand" href="/admin">Login Page</a>
+        <a class="navbar-brand" href="/">Login Page</a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
         <span class="sr-only">Toggle navigation</span>
@@ -23,7 +22,7 @@
             </a>
           </li>
           <li class="nav-item  active ">
-            <a href="/admin" class="nav-link">
+            <a href="/" class="nav-link">
               <i class="material-icons">fingerprint</i> Login
             </a>
           </li>
@@ -37,7 +36,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4 col-md-6 col-sm-8 ml-auto mr-auto">
-            <form class="form" method="POST" action="{{ url('/admin') }}">
+            <form class="form" method="POST" action="{{ url('/') }}">
                 {{ csrf_field() }}
 
               <div class="card card-login">
@@ -52,7 +51,7 @@
                           <i class="material-icons">email</i>
                         </span>
                       </div>
-                      <input type="email" name="email" class="form-control" placeholder="Email..." required>
+                      <input type="email" name="admissionNumber" class="form-control" placeholder="Admission..." required>
                     </div>
                   </span><br>
                   <span class="bmd-form-group">
@@ -62,7 +61,7 @@
                           <i class="material-icons">lock_outline</i>
                         </span>
                       </div>
-                      <input type="text" name="password" class="form-control" placeholder="Password..." required>
+                      <input type="text" name="idNumber" class="form-control" placeholder="Id Number..." required>
                     </div>
                   </span>
                 </div>

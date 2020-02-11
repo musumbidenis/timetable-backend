@@ -30,7 +30,7 @@ class SessionsController extends Controller
 
         $session->save();
 
-        return redirect('/session')->with('success1','Session added successfully!');;
+        return redirect('/session')->with('success','Session added successfully!');;
     }
     public function mondaySessions(Request $request)
     {

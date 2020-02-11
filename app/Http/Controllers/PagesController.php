@@ -21,7 +21,7 @@ class PagesController extends Controller
     return view('pages.dashboard')->with('courses', $courses)->with('units', $units);
   }
 
-  public function music(){
+  public function course(){
     $years = Year::select('yosId', 'year')->get();
     $courses = Course::select('courseCode', 'courseTitle')->get();
     $units = Unit::select('unitCode', 'unitTitle', 'courseCode')->get();

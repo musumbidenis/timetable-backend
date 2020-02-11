@@ -44,9 +44,14 @@
             </div>
             <!-- Display notification messages here -->
             <div class="container" style="padding-top:10px;">
-              @include('layouts.flash-message')
+              @if ($message = Session::get('success1'))
+              <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>    
+                <strong>{{ $message }}</strong>
+              </div>
+              @endif
             </div>
-            
+
             <div class="card-body ">
               <form method="post" action="{{url('/course/upload')}}" enctype="multipart/form-data">
               {{ csrf_field() }}
@@ -112,9 +117,12 @@
               <h4 class="card-title">Register Unit</h4>
             </div>
             <!-- Display notification messages here -->
-            <div class="container" style="padding-top:10px;">
-              @include('layouts.flash-message')
-            </div>
+            @if ($message = Session::get('success2'))
+              <div class="alert alert-success alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>    
+                <strong>{{ $message }}</strong>
+              </div>
+            @endif
 
             <div class="card-body ">
               <form method="post" action="{{url('/unit/upload')}}" enctype="multipart/form-data">

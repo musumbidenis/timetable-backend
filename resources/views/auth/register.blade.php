@@ -22,7 +22,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/admin" class="nav-link">
+                <a href="/" class="nav-link">
                   <i class="material-icons">fingerprint</i> Login
                 </a>
               </li>
@@ -48,10 +48,20 @@
                                 <div class="input-group">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">
+                                      <i class="material-icons">account_circle</i>
+                                    </span>
+                                  </div>
+                                  <input type="text" name="admissionNumber" class="form-control" placeholder="Admission Number..." required>
+                                </div>
+                              </span><br>
+                              <span class="bmd-form-group">
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">
                                       <i class="material-icons">face</i>
                                     </span>
                                   </div>
-                                  <input type="text" name="name" class="form-control" placeholder="Name..." required>
+                                  <input type="email" name="name" class="form-control" placeholder="Name..." required>
                                 </div>
                               </span><br>
                               <span class="bmd-form-group">
@@ -61,17 +71,27 @@
                                       <i class="material-icons">email</i>
                                     </span>
                                   </div>
-                                  <input type="email" name="email" class="form-control" placeholder="Email..." required>
+                                  <input type="text" name="email" class="form-control" placeholder="Email..." required>
                                 </div>
                               </span><br>
                               <span class="bmd-form-group">
                                 <div class="input-group">
                                   <div class="input-group-prepend">
                                     <span class="input-group-text">
-                                      <i class="material-icons">lock_outline</i>
+                                      <i class="material-icons">phone</i>
                                     </span>
                                   </div>
-                                  <input type="text" name="password" class="form-control" placeholder="Password..." required>
+                                  <input type="text" name="phoneNumber" class="form-control" placeholder="Phone Number..." required>
+                                </div>
+                              </span><br>
+                              <span class="bmd-form-group">
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                      <i class="material-icons">lock</i>
+                                    </span>
+                                  </div>
+                                  <input type="text" name="idNumber" class="form-control" placeholder="Id Number..." required>
                                 </div>
                               </span><br>
                             </div>
