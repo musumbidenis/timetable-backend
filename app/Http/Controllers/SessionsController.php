@@ -32,10 +32,12 @@ class SessionsController extends Controller
 
         return redirect('/session')->with('success','Session added successfully!');;
     }
-    public function mondaySessions(Request $request)
+    public function getSessions(Request $request)
     {
         $courseCode = $request->course;
         $yosId = $request->year;
+        $dayid = $request->dayId;
+        
 
         $data = DB::table('units')
           ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
@@ -43,120 +45,11 @@ class SessionsController extends Controller
           ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
           ->where('sessions.courseCode', '=', $courseCode)
           ->where('sessions.yosId', '=', $yosId)
-          ->where('sessions.dayId', '=', '1')
+          ->where('sessions.dayId', '=', $dayid)
           ->orderBy('sessions.dayId', 'asc')
           ->orderBy('sessions.sessionStart', 'asc')
           ->distinct()
           ->get();
-
-        if($data){
-            return response()->json(
-                $data
-            );
-        }else{
-            return response()->json('error');
-        }
-    }
-
-    public function tuesdaySessions(Request $request)
-    {
-        $courseCode = $request->course;
-        $yosId = $request->year;
-
-        $data = DB::table('units')
-          ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
-          ->join('days', 'days.dayId', '=', 'sessions.dayId')
-          ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('sessions.courseCode', '=', $courseCode)
-          ->where('sessions.yosId', '=', $yosId)
-          ->where('sessions.dayId', '=', '2')
-          ->orderBy('sessions.dayId', 'asc')
-          ->orderBy('sessions.sessionStart', 'asc')
-          ->distinct()
-          ->get();
-
-
-        if($data){
-            return response()->json(
-                $data
-            );
-        }else{
-            return response()->json('error');
-        }
-    }
-
-    public function wednesdaySessions(Request $request)
-    {
-        $courseCode = $request->course;
-        $yosId = $request->year;
-
-        $data = DB::table('units')
-          ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
-          ->join('days', 'days.dayId', '=', 'sessions.dayId')
-          ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('sessions.courseCode', '=', $courseCode)
-          ->where('sessions.yosId', '=', $yosId)
-          ->where('sessions.dayId', '=', '3')
-          ->orderBy('sessions.dayId', 'asc')
-          ->orderBy('sessions.sessionStart', 'asc')
-          ->distinct()
-          ->get();
-
-
-        if($data){
-            return response()->json(
-                $data
-            );
-        }else{
-            return response()->json('error');
-        }
-    }
-
-    public function thursdaySessions(Request $request)
-    {
-        $courseCode = $request->course;
-        $yosId = $request->year;
-
-        $data = DB::table('units')
-          ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
-          ->join('days', 'days.dayId', '=', 'sessions.dayId')
-          ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('sessions.courseCode', '=', $courseCode)
-          ->where('sessions.yosId', '=', $yosId)
-          ->where('sessions.dayId', '=', '4')
-          ->orderBy('sessions.dayId', 'asc')
-          ->orderBy('sessions.sessionStart', 'asc')
-          ->distinct()
-          ->get();
-
-
-        if($data){
-            return response()->json(
-                $data
-            );
-        }else{
-            return response()->json('error');
-        }
-    }
-
-    public function fridaySessions(Request $request)
-    {
-        $courseCode = $request->course;
-        $yosId = $request->year;
-
-
-        $data = DB::table('units')
-          ->join('sessions', 'sessions.unitCode', '=', 'units.unitCode')
-          ->join('days', 'days.dayId', '=', 'sessions.dayId')
-          ->select('sessions.dayId','units.unitCode', 'units.unitTitle', 'sessions.sessionStart', 'sessions.sessionStop')
-          ->where('sessions.courseCode', '=', $courseCode)
-          ->where('sessions.yosId', '=', $yosId)
-          ->where('sessions.dayId', '=', '5')
-          ->orderBy('sessions.dayId', 'asc')
-          ->orderBy('sessions.sessionStart', 'asc')
-          ->distinct()
-          ->get();
-
 
         if($data){
             return response()->json(
