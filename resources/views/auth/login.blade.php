@@ -43,6 +43,26 @@
                 <div class="card-header card-header-rose text-center">
                   <h4 class="card-title">Login Form</h4>
                 </div><br>
+
+              <!-- Display notification messages here -->
+              <div class="container" style="padding-top:10px;">
+                @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button>    
+                  <strong>{{ $message }}</strong>
+                </div>
+                @endif
+                </div>
+                <div class="container" style="padding-top:10px;">
+                @if ($message = Session::get('error'))
+                <div class="alert alert-danger alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button>    
+                  <strong>{{ $message }}</strong>
+                </div>
+                @endif
+                </div>
+
+
                 <div class="card-body ">
                   <span class="bmd-form-group">
                     <div class="input-group">
@@ -51,7 +71,7 @@
                           <i class="material-icons">email</i>
                         </span>
                       </div>
-                      <input type="email" name="admissionNumber" class="form-control" placeholder="Admission..." required>
+                      <input type="text" name="admissionNumber" class="form-control" placeholder="Admission Number" required>
                     </div>
                   </span><br>
                   <span class="bmd-form-group">
@@ -61,7 +81,7 @@
                           <i class="material-icons">lock_outline</i>
                         </span>
                       </div>
-                      <input type="text" name="idNumber" class="form-control" placeholder="Id Number..." required>
+                      <input type="password" name="idNumber" class="form-control" placeholder="Id Number" required>
                     </div>
                   </span>
                 </div>

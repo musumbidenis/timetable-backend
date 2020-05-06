@@ -4,41 +4,95 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Year;
 use App\Day;
-use App\Course;
-use App\Unit;
-
-
-use Auth;
+use DB;
+use Session;
 
 class PagesController extends Controller
 {
-  public function home(){
-    $courses = Course::count();
-    $units = Unit::count();
+  /*GET
+  */
+  public function home(Request $request){
 
-    return view('pages.dashboard')->with('courses', $courses)->with('units', $units);
+    /**Get the admission number of user stored in session &&
+     * fetch the study year and study course for the user
+     */
+    $value = $request->session()->get('admissionKey');
+    $details = User::select('yosId', 'courseCode')->where('admissionNo', $value)->get()->first();
+
+    /**Fetch the units in respect to logged in user
+     */
+    $units = DB::table('users')
+                  ->join('courses', 'courses.courseCode', '=', 'users.courseCode')
+                  ->join('units', 'units.courseCode', '=', 'courses.courseCode')
+                  ->where('units.courseCode', '=', $details->courseCode)
+                  ->where('units.yosId', '=', $details->yosId)
+                  ->distinct()
+                  ->count();
+                  
+    /**Return the view */
+    return view('pages.dashboard')->with('units', $units)->with('value', $request->session()->get('admissionKey'));
   }
 
-  public function course(){
-    $years = Year::select('yosId', 'year')->get();
-    $courses = Course::select('courseCode', 'courseTitle')->get();
-    $units = Unit::select('unitCode', 'unitTitle', 'courseCode')->get();
+  /*GET
+  */
+  public function unit(Request $request){
 
-    return view('pages.course')->with('courses', $courses)->with('units', $units)->with('years', $years);
+    /**Get the admission number of user stored in session &&
+     * fetch the study year and study course for the user
+     */
+    $value = $request->session()->get('admissionKey');
+    $details = User::select('yosId', 'courseCode')->where('admissionNo', $value)->get()->first();
 
+    /**Fetch the units in respect to logged in user
+     */
+    $units = DB::table('users')
+                  ->join('courses', 'courses.courseCode', '=', 'users.courseCode')
+                  ->join('units', 'units.courseCode', '=', 'courses.courseCode')
+                  ->select('units.unitCode', 'units.unitTitle', 'courses.courseCode', 'courses.courseTitle')
+                  ->where('units.courseCode', '=', $details->courseCode)
+                  ->where('units.yosId', '=', $details->yosId)
+                  ->distinct()
+                  ->get();
+                
+    /**Return the view */
+    return view('pages.unit')->with('units', $units)->with('value', $request->session()->get('admissionKey'));
   }
 
-    
+  /*GET
+  */
   public function session(request $request){
-    $days = Day::select('dayId', 'dayName')->get();
-    $years = Year::select('yosId', 'year')->get();
-    $courses = Course::select('courseCode', 'courseTitle')->get();
-    $units = Unit::select('unitCode', 'unitTitle')->get();
-    $years = Year::select('yosId', 'year')->get();
 
-    return view('pages.session')->with('courses', $courses)->with('units', $units)->with('years', $years)->with('days', $days);
+    /**Get the admission number of user stored in session &&
+     * fetch the study year and study course for the user
+     */
+    $value = $request->session()->get('admissionKey');
+    $details = User::select('yosId', 'courseCode')->where('admissionNo', $value)->get()->first();
+
+    /**Get the days from the db &&
+     * the units in respect to logged in user &&
+     * also get the sessions that exist
+     */
+    $units = DB::table('users')
+                  ->join('courses', 'courses.courseCode', '=', 'users.courseCode')
+                  ->join('units', 'units.courseCode', '=', 'courses.courseCode')
+                  ->where('units.courseCode', '=', $details->courseCode)
+                  ->where('units.yosId', '=', $details->yosId)
+                  ->distinct()
+                  ->get();
+                  
+    $sessions = DB::table('session1s')
+                  ->join('units', 'units.unitCode', '=', 'session1s.unitCode')
+                  ->join('courses', 'courses.courseCode', '=', 'units.courseCode')
+                  ->join('users', 'users.courseCode', '=', 'units.courseCode')
+                  ->select('units.unitCode','units.unitTitle', 'session1s.day', 'session1s.sessionStart', 'session1s.sessionStop')
+                  ->where('session1s.courseCode', '=', $details->courseCode)
+                  ->where('session1s.yosId', '=', $details->yosId)
+                  ->distinct()
+                  ->get();
+
+    /**Return the view */
+    return view('pages.session')->with('units', $units)->with('sessions', $sessions)->with('value', $request->session()->get('admissionKey'));
 
   }
     

@@ -16,16 +16,16 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ Request::path() == 'course' ? 'active' : '' }}">
-            <a class="nav-link" href="/course">
+          <li class="{{ Request::path() == 'unit' ? 'active' : '' }}">
+            <a class="nav-link" href="/unit">
               <i class="material-icons">info</i>
-              <p>Course</p>
+              <p>Units</p>
             </a>
           </li>
           <li class="{{ Request::path() == 'session' ? 'active' : '' }}">
             <a class="nav-link" href="/session">
               <i class="material-icons">schedule</i>
-              <p>Session</p>
+              <p>Sessions</p>
             </a>
           </li>
         </ul>

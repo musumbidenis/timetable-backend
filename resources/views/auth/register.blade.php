@@ -43,6 +43,18 @@
                             <div class="card-header card-header-rose text-center">
                               <h4 class="card-title">Registration Form</h4>
                             </div><br>
+
+                          <!-- Display notification messages here -->
+                          <div class="container" style="padding-top:10px;">
+                            @if ($message = Session::get('error'))
+                              <div class="alert alert-danger alert-block">
+                                <button type="button" class="close" data-dismiss="alert">×</button>    
+                                <strong>{{ $message }}</strong>
+                              </div>
+                            @endif
+                          </div>
+
+
                             <div class="card-body ">
                               <span class="bmd-form-group">
                                 <div class="input-group">
@@ -51,7 +63,7 @@
                                       <i class="material-icons">account_circle</i>
                                     </span>
                                   </div>
-                                  <input type="text" name="admissionNumber" class="form-control" placeholder="Admission Number..." required>
+                                  <input type="text" name="admissionNumber" class="form-control" placeholder="Admission Number" required>
                                 </div>
                               </span><br>
                               <span class="bmd-form-group">
@@ -61,7 +73,7 @@
                                       <i class="material-icons">face</i>
                                     </span>
                                   </div>
-                                  <input type="email" name="name" class="form-control" placeholder="Name..." required>
+                                  <input type="text" name="name" class="form-control" placeholder="Full Name" required>
                                 </div>
                               </span><br>
                               <span class="bmd-form-group">
@@ -71,7 +83,7 @@
                                       <i class="material-icons">email</i>
                                     </span>
                                   </div>
-                                  <input type="text" name="email" class="form-control" placeholder="Email..." required>
+                                  <input type="text" name="email" class="form-control" placeholder="Email Address" required>
                                 </div>
                               </span><br>
                               <span class="bmd-form-group">
@@ -81,7 +93,7 @@
                                       <i class="material-icons">phone</i>
                                     </span>
                                   </div>
-                                  <input type="text" name="phoneNumber" class="form-control" placeholder="Phone Number..." required>
+                                  <input type="text" name="phoneNumber" class="form-control" placeholder="Phone Number" required>
                                 </div>
                               </span><br>
                               <span class="bmd-form-group">
@@ -91,7 +103,37 @@
                                       <i class="material-icons">lock</i>
                                     </span>
                                   </div>
-                                  <input type="text" name="idNumber" class="form-control" placeholder="Id Number..." required>
+                                  <input type="text" name="idNumber" class="form-control" placeholder="Id Number" required>
+                                </div>
+                              </span><br>
+                              <span class="bmd-form-group">
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                      <i class="material-icons">school</i>
+                                    </span>
+                                  </div>
+                                  <input type="text" name="courseCode" class="form-control" placeholder="Course Code" required>
+                                  <br>
+                                  <input type="text" name="courseTitle" class="form-control" placeholder="Course Title" required>
+                                </div>
+                              </span><br>
+                              <span class="bmd-form-group">
+                                <div class="input-group">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                      <i class="material-icons">date_range</i>
+                                    </span>
+                                  </div>
+                                  <select class="" name="year">
+                                    <option value="" disabled selected>Choose Academic Year </option>
+                                    <option value="1">Academic Year 1</option>
+                                    <option value="2">Academic Year 2</option>
+                                    <option value="3">Academic Year 3</option>
+                                    <option value="4">Academic Year 4</option>
+                                    <option value="5">Academic Year 5</option>
+                                    <option value="6">Academic Year 6</option>
+                                  </select>
                                 </div>
                               </span><br>
                             </div>

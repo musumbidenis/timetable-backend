@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="main-panel">
-<!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="/session">Sessions</a>
+            <a class="navbar-brand" href="/course">Units</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -30,67 +30,51 @@
             </ul>
           </div>
         </div>
-    </nav>
+      </nav>
 <!-- End Navbar -->
-<div class="content">
+
+  <div class="content">
     <div class="container-fluid">
       <div class="row">
-      <!-- upload sessions card -->
+      <!-- upload units card -->
         <div class="col-lg-12 col-md-6 col-sm-6">
           <div class="card ">
             <div class="card-header card-header-rose card-header-icon">
               <div class="card-icon">
                 <i class="material-icons">info</i>
               </div>
-              <h4 class="card-title">Session</h4>
+              <h4 class="card-title">Register Unit</h4>
             </div>
 
-           <!-- Display notification messages here -->
-           <div class="container" style="padding-top:10px;">
-            @if ($message = Session::get('success'))
-              <div class="alert alert-success alert-block">
-                <button type="button" class="close" data-dismiss="alert">×</button>    
-                <strong>{{ $message }}</strong>
-              </div>
-            @endif
-          </div>
-            
+
+            <!-- Display notification messages here -->
+            <div class="container" style="padding-top:10px;">
+              @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block">
+                  <button type="button" class="close" data-dismiss="alert">×</button>    
+                  <strong>{{ $message }}</strong>
+                </div>
+              @endif
+            </div>
+
             <div class="card-body ">
-              <form method="post" action="{{url('/session/upload')}}" enctype="multipart/form-data">
+              <form method="post" action="{{url('/unit/upload')}}" enctype="multipart/form-data">
               {{ csrf_field() }}
 
-              <br>
               <div class="form-group">
-                <select class="form-control selectpicker" name="unit" data-style="btn btn-link" id="unitSelect" required>
-                  <option value="" disabled selected>Select Unit</option>
-                  @foreach ($units as $unit)
-                  <option value="{{$unit->unitCode}}">{{$unit->unitTitle}}</option>
-                  @endforeach
-                </select>
-              </div>   
-              <div class="form-group">
-              <select class="form-control selectpicker" name="day" data-style="btn btn-link" id="courseSelect" required>
-                <option value="" disabled selected>Select day</option>
-                <option value="Monday">Monday</option>  
-                <option value="Tuesday">Tuesday</option>  
-                <option value="Wednesday">Wednesday</option>   
-                <option value="Thursday">Thursday</option>  
-                <option value="Friday">Friday</option>   
-              </select>
+                <label class="bmd-label-floating">unit code</label>
+                  <input type="text" name="unitCode" class="form-control" required>
               </div>
               <div class="form-group">
-                <label class="bmd-label-floating">Session Start</label>
-                  <input type="time" name="start" class="form-control" required>
-              </div>
-              <div class="form-group">
-                <label class="bmd-label-floating">Session Stop</label>
-                  <input type="time" name="stop" class="form-control" required>
-              </div>                                             
+                <label class="bmd-label-floating">unit title</label>
+                  <input type="text" name="unitTitle" class="form-control" required>
+              </div>                                                     
               <div class="card-footer ">
                 <button type="submit" class="btn btn-fill btn-rose">Save</button>
               </div>
               </form>
             </div>
+
             <!-- Display the units available in the database -->
             <div class="card-body">
               <div class="toolbar">
@@ -103,33 +87,24 @@
                     <tr>
                     <th>Unit Code</th>
                     <th>Unit Title</th>
-                    <th>Day</th>
-                    <th>Session Start</th>
-                    <th>Session Stop</th>
-                    <th class="disabled-sorting text-right">Action</th>
-                    <th></th>
+                    <th>Course Code</th>
+                    <th>Course Title</th>
+                    <th class="disabled-sorting">Action</th>
                   </tr>
                   </thead>
                   <tbody>
-                  @foreach ($sessions as $session)
+                  @foreach ($units as $unit)
                   <tr>
-                  <td>{{$session->unitCode}}</td>
-                  <td>{{$session->unitTitle}}</td>
-                  <td>{{$session->day}}</td>
-                  <td>{{$session->sessionStart}}</td>
-                  <td>{{$session->sessionStop}}</td>
+                  <td>{{$unit->unitCode}}</td>
+                  <td>{{$unit->unitTitle}}</td>
+                  <td>{{$unit->courseCode}}</td>
+                  <td>{{$unit->courseTitle}}</td>
                   <td>
-                    <form method="post" action="/delete_asset/" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        <input type="submit" class="btn btn-success btn-sm" value="EDIT">
-                    </form>
-                  </td>
-                  <td>
-                    <form method="post" action="/delete_asset/" enctype="multipart/form-data">
+                    <form method="post" action="/delete_asset/" enctype="multipart/form-data" name="deleteForm">
                         {{ csrf_field() }}
                         <input type="submit" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-sm" value="DELETE">
                     </form>
-                  </td>
+                </td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -137,9 +112,8 @@
                     <tr>
                     <th>Unit Code</th>
                     <th>Unit Title</th>
-                    <th>Day</th>
-                    <th>Session Start</th>
-                    <th>Session Stop</th>
+                    <th>Course Code</th>
+                    <th>Course Title</th>
                     <th class="disabled-sorting">Action</th>
                   </tr>
                   </tfoot>
@@ -148,10 +122,9 @@
                 </table>
               </div>
             </div>
-         </div>
-        </div>
+         </div> 
+       </div>
     </div>
   </div>
-</div>
 </div>
 @endsection

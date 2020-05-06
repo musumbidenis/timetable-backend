@@ -2,85 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Unit;
 use Illuminate\Http\Request;
+use App\Unit;
+use App\User;
+use Session;
+usE DB;
 
 class UnitsController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+    /**POST
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'unitCode' => 'required',
-            'unitTitle' => 'required',
-        ]);
-        
+
+        /**Get the admission number of user stored in session &&
+         * fetch the study year and study course for the user
+        */
+        $value = $request->session()->get('admissionKey');
+        $details = User::select('courseCode','yosId')->where('admissionNo', $value)->get()->first();
+
         $unit = new Unit();
-        $unit->unitCode = $request->input('unitCode');
-        $unit->unitTitle = $request->input('unitTitle');
-        $unit->courseCode = $request->input('course');
-        $unit->yosId = $request->input('year');
+        $unit->unitCode = $request->unitCode;
+        $unit->unitTitle = $request->unitTitle;
+        $unit->courseCode = $details->courseCode;
+        $unit->yosId = $details->yosId;
         
         $unit->save();
 
-        return redirect('/course')->with('success2','Unit added successfully!');;
+        return redirect('/unit')->with('success','Unit added successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Unit $unit)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Unit $unit)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Unit $unit)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Unit  $unit
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Unit $unit)
     {
         //

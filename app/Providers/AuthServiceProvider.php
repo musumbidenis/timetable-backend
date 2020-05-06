@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use Imanghafoori\HeyMan\Facades\HeyMan;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // /*Check if user is logged in*/
+        // HeyMan::whenYouVisitUrl(['/home', '/course', '/session', '/unit/upload', '/session/upload'])
+        //     ->sessionShouldHave('admissionkey')
+        //     ->otherwise()
+        //     ->redirect()
+        //     ->to('/');
     }
 }
