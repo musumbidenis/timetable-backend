@@ -33,8 +33,10 @@ class UnitsController extends Controller
         return redirect('/unit')->with('success','Unit added successfully!');
     }
 
-    public function destroy(Unit $unit)
+    public function destroy($id)
     {
-        //
+        Unit::where('unitCode', $id)->delete();
+        
+        return redirect('/unit')->with('success','Unit delete successfully!');
     }
 }

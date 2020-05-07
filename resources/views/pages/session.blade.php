@@ -119,13 +119,13 @@
                   <td>{{$session->sessionStart}}</td>
                   <td>{{$session->sessionStop}}</td>
                   <td>
-                    <form method="post" action="/delete_asset/" enctype="multipart/form-data">
+                    <form method="post" action="/" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="submit" class="btn btn-success btn-sm" value="EDIT">
                     </form>
                   </td>
                   <td>
-                    <form method="post" action="/delete_asset/" enctype="multipart/form-data">
+                    <form method="post" action="/delete-session/{{$session->sessionId}}" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="submit" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-sm" value="DELETE">
                     </form>

@@ -32,6 +32,13 @@ class SessionsController extends Controller
 
         return redirect('/session')->with('success','Session added successfully!');;
     }
+    /*POST
+     */
+    public function destroy($id){
+        Session1::where('sessionId', $id)->delete();
+
+        return redirect('/session')->with('success', 'Session deleted succesfully!');
+    }
 
     /*POST
      */
@@ -44,8 +51,8 @@ class SessionsController extends Controller
         $yosId = $request->year;
         $dayid = $request->dayId;
 
-        /**Switch through the dayId to get the day value
-         * to querry the db
+        /**Switch through the dayId to get the day value &&
+         * querry the database
          */
         if ($dayid == 1){
             $day = 'Monday';
@@ -59,7 +66,7 @@ class SessionsController extends Controller
             $day = 'Friday';
         }
         
-        /**Fetch session details from db &&
+        /**Fetch session details from database &&
          * pass them to the android app via API
          */
         $data = DB::table('units')

@@ -27,3 +27,6 @@ Route::get('/session', 'PagesController@session');
 
 Route::post('/unit/upload', 'UnitsController@store');
 Route::post('/session/upload', 'SessionsController@store');
+
+Route::post('/delete-session/{id}', 'SessionsController@destroy');
+Route::post('/delete-unit/{id}', 'UnitsController@destroy');

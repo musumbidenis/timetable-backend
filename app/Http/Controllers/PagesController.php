@@ -85,7 +85,7 @@ class PagesController extends Controller
                   ->join('units', 'units.unitCode', '=', 'session1s.unitCode')
                   ->join('courses', 'courses.courseCode', '=', 'units.courseCode')
                   ->join('users', 'users.courseCode', '=', 'units.courseCode')
-                  ->select('units.unitCode','units.unitTitle', 'session1s.day', 'session1s.sessionStart', 'session1s.sessionStop')
+                  ->select('units.unitCode','units.unitTitle', 'session1s.sessionId', 'session1s.day', 'session1s.sessionStart', 'session1s.sessionStop')
                   ->where('session1s.courseCode', '=', $details->courseCode)
                   ->where('session1s.yosId', '=', $details->yosId)
                   ->distinct()

@@ -100,7 +100,7 @@
                   <td>{{$unit->courseCode}}</td>
                   <td>{{$unit->courseTitle}}</td>
                   <td>
-                    <form method="post" action="/delete_asset/" enctype="multipart/form-data" name="deleteForm">
+                    <form method="post" action="/delete-unit/{{$unit->unitCode}}" enctype="multipart/form-data" name="deleteForm">
                         {{ csrf_field() }}
                         <input type="submit" onclick="return confirm('Are you sure to delete?')" class="btn btn-danger btn-sm" value="DELETE">
                     </form>
